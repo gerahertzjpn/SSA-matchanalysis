@@ -3,7 +3,6 @@ import time
 # import os
 from dotenv import load_dotenv
 from google import genai
-from pydantic import BaseModel
 
 # from pydantic import BaseModel
 queue = {}
@@ -84,30 +83,33 @@ def main(fid: int, data: dict):
         geminiinputlord = f"<lord>лорд был повержен на {capturelordtick} тике, игроком {owner}, и был призван за команду {teamowner}</lord>"
     # print(geminiinputlord)
 
-    start = time.perf_counter()
-    interaction = client.interactions.create(
-        model="gemini-3.6-flash",
-        system_instruction="""ты - аналитик матча по виртуальной киберспортивной rts игре, 
-        в которой сражаются игроки 3 на 3. твоя задача - проанализировать матч и рассказать, что произошло в игре.
-        игра двигается по тикам. 
-        <data> - это все доступные данные по матчу. <winner> - победитель матча, <time> - длительность матча, <names> - имена игроков,
-        <fractions> - фракции игроков, <lord> - информация о лорде (сильный нейтральный юнит в центре карты, который при
-        уничтожение одной из команд встает на ее сторону и пушит ядро), <crash> - информация о тике, в котором было
-        сломано ядро. у игроков есть ключи A1 A2 A3 B1 B2 B3, используй вместо этих ключей имена, если таковые данные
-        тебе были предоставлены (если нет, то считай их безымянными новичками), игроки A - одна команда, игроки B - другая команда""",
-        input=f"""<data>
-        <winner>{data["meta"]["winner"]}</winner>
-        <time>{data["meta"]["total_ticks"]}</time>
-        <names>{data["meta"]["player_names"]}</names>
-        <fractions>{data["meta"]["player_factions"]}</fractions>
-        {geminiinputlord}
-        {geminiinputcrash}
-        </data>"""
-    )
-    elapsed = time.perf_counter() - start
-
-    print(f"{elapsed:.3f} с")      
-    print(interaction.output_text)
-    print(interaction.usage)
-    queue[fid]["result"]["text"] = interaction.output_text
-    queue[fid]["result"]["status"] = "готово"
+    try:
+        start = time.perf_counter()
+        interaction = client.interactions.create(
+            model="gemini-3.6-flash",
+            system_instruction="""ты - аналитик матча по виртуальной киберспортивной rts игре, 
+            в которой сражаются игроки 3 на 3. твоя задача - проанализировать матч и рассказать, что произошло в игре.
+            игра двигается по тикам. 
+            <data> - это все доступные данные по матчу. <winner> - победитель матча, <time> - длительность матча, <names> - имена игроков,
+            <fractions> - фракции игроков, <lord> - информация о лорде (сильный нейтральный юнит в центре карты, который при
+            уничтожение одной из команд встает на ее сторону и пушит ядро), <crash> - информация о тике, в котором было
+            сломано ядро. у игроков есть ключи A1 A2 A3 B1 B2 B3, используй вместо этих ключей имена, если таковые данные
+            тебе были предоставлены (если нет, то считай их безымянными новичками), игроки A - одна команда, игроки B - другая команда""",
+            input=f"""<data>
+            <winner>{data["meta"]["winner"]}</winner>
+            <time>{data["meta"]["total_ticks"]}</time>
+            <names>{data["meta"]["player_names"]}</names>
+            <fractions>{data["meta"]["player_factions"]}</fractions>
+            {geminiinputlord}
+            {geminiinputcrash}
+            </data>"""
+        )
+        elapsed = time.perf_counter() - start
+        print(f"{elapsed:.3f} с")      
+        print(interaction.output_text)
+        print(interaction.usage)
+        queue[fid]["result"]["text"] = interaction.output_text
+        queue[fid]["result"]["status"] = "готово"
+    except Exception:  # noqa: BLE001
+        queue[fid]["result"]["text"] = "error"
+        queue[fid]["result"]["status"] = "error"

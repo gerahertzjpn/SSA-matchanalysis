@@ -22,5 +22,8 @@ while True:
     if res["status"] == "готово":
         print("Результат:", res["text"])
         break
+    elif res["status"] == "error":
+        print("произошла непредвиденная ошибка, попробуйте позже")
+        break
 
     time.sleep(3)
