@@ -1,0 +1,10 @@
+<data>
+<winner>TEAM_B</winner>
+<time>211</time>
+<names>{}</names>
+<fractions>{'A1': 'infected', 'A2': 'robots', 'A3': 'infected', 'B1': 'robots', 'B2': 'robots', 'B3': 'infected'}</fractions>
+<lord>ロードは132ティック目にプレイヤーB1によって撃破され、TEAM_Bの味方として召喚された</lord>
+<crash> 108ティック目に、プレイヤーA2のコアが、攻撃側のプレイヤーB1によって破壊された </crash>,
+<crash> 111ティック目に、プレイヤーA1のコアが、攻撃側のプレイヤーB1によって破壊された </crash>,
+<crash> 210ティック目に、プレイヤーA3のコアが、攻撃側のプレイヤーB1によって破壊された </crash>,
+</data>

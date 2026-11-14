@@ -1,0 +1,1114 @@
+{
+  "_note": "実際のリプレイ（約12.2MB・全211ティック）からの抜粋です。ticks は重要な2ティック（108：最初のコア破壊、132：ロード撃破）のみを掲載し、サイズの大きいフィールドは「<省略>」に置き換えています。それ以外の値は元データのままです。",
+  "meta": {
+    "schema_version": "0.7.2",
+    "winner": "TEAM_B",
+    "total_ticks": 211,
+    "combat_trace_format": "compact_v4",
+    "generation_mode": "replay",
+    "bot_type": "league",
+    "rules": "<省略：ゲームルール定義（約4.7KB）>",
+    "map2d": "<省略：マップ定義（約11.9KB）>",
+    "player_models": "<省略：プレイヤーモデル設定（約0.5KB）>",
+    "player_factions": {
+      "A1": "infected",
+      "A2": "robots",
+      "A3": "infected",
+      "B1": "robots",
+      "B2": "robots",
+      "B3": "infected"
+    },
+    "player_names": {},
+    "winner_type": "normal",
+    "core_combat_damage": 240.0,
+    "core_damage_by_team": {
+      "TEAM_A": 0.0,
+      "TEAM_B": 240.0
+    },
+    "death_time_final_core_deaths": {
+      "TEAM_A": 0,
+      "TEAM_B": 0
+    },
+    "final_core_hp": {
+      "A1": 0.0,
+      "A2": 0.0,
+      "A3": 0.0,
+      "B1": 80.0,
+      "B2": 80.0,
+      "B3": 80.0
+    },
+    "allied_lord": {
+      "owner": "B1",
+      "hp": 0.0,
+      "target": null,
+      "path": [],
+      "ready_tick": 0,
+      "arrival_tick": 0,
+      "support_units": {},
+      "alive": false,
+      "expended": false
+    }
+  },
+  "ticks": [
+    {
+      "tick": 108,
+      "winner_type": null,
+      "nodes": "<省略：マップ上の各拠点の状態（約4.9KB）>",
+      "moving_groups": "<省略：移動中のユニット部隊（約7.6KB）>",
+      "active_battles": "<省略：進行中の戦闘（約1.1KB）>",
+      "visual_units": "<省略：描画用ユニット座標（約45.1KB）>",
+      "players": {
+        "A1": {
+          "resources": 5.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "infected"
+        },
+        "A2": {
+          "resources": 0.21,
+          "alive": false,
+          "core_hp": 0.0,
+          "core_type": "standard",
+          "faction": "robots"
+        },
+        "A3": {
+          "resources": 2.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "infected"
+        },
+        "B1": {
+          "resources": 9.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "robots"
+        },
+        "B2": {
+          "resources": 0.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "robots"
+        },
+        "B3": {
+          "resources": 15.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "infected"
+        }
+      },
+      "baron": {
+        "hp": 264,
+        "max_hp": 300,
+        "controlled_by": null,
+        "allied_lord_owner": null,
+        "allied_lord_hp": 0.0,
+        "allied_lord_target": null,
+        "allied_lord_path": [],
+        "allied_lord_ready_tick": 0,
+        "allied_lord_arrival_tick": 0,
+        "allied_lord_support_units": {},
+        "allied_lord_ready_in": 0,
+        "allied_lord_eta": 0,
+        "allied_lord_alive": false,
+        "allied_lord_expended": false
+      },
+      "core_damage_by_team": {
+        "TEAM_A": 0.0,
+        "TEAM_B": 80.0
+      },
+      "death_time_final_core_deaths": {
+        "TEAM_A": 0,
+        "TEAM_B": 0
+      },
+      "events": [
+        {
+          "type": "BATTLE_REINFORCEMENT",
+          "battle_type": "approach_battle",
+          "location_kind": "approach",
+          "location_id": "A2",
+          "battle_id": "node:A2",
+          "approach_id": "CP2->A2",
+          "threat_zone_ids": [
+            "core:A2"
+          ],
+          "player": "A2",
+          "units": {
+            "DRONE": 1
+          },
+          "intent": "DEFEND",
+          "reason": "stationed_reserve_absorbed"
+        },
+        {
+          "type": "BATTLE_TICK",
+          "battle_type": "approach_battle",
+          "location_kind": "approach",
+          "location_id": "A2",
+          "battle_id": "node:A2",
+          "approach_id": "CP2->A2",
+          "threat_zone_ids": [
+            "core:A2"
+          ],
+          "summary": {
+            "alive": {
+              "B1": {
+                "units": {
+                  "LASER": 1,
+                  "WALKER": 1
+                },
+                "hp": 43.0
+              }
+            },
+            "damage_by_team": {
+              "A2": 14.0,
+              "B1": 34.0
+            },
+            "attacks": [
+              [
+                932,
+                934,
+                7.0,
+                "A2",
+                "C",
+                "B1",
+                "WK",
+                70.0,
+                210.0,
+                110.42,
+                227.32
+              ],
+              [
+                932,
+                934,
+                7.0,
+                "A2",
+                "C",
+                "B1",
+                "WK",
+                70.0,
+                210.0,
+                110.42,
+                227.32
+              ],
+              [
+                933,
+                971,
+                4.0,
+                "B1",
+                "WK",
+                "A2",
+                "DR",
+                109.21,
+                230.9,
+                84.14,
+                219.94
+              ],
+              [
+                933,
+                971,
+                4.0,
+                "B1",
+                "WK",
+                "A2",
+                "DR",
+                109.21,
+                230.9,
+                84.14,
+                219.94
+              ],
+              [
+                934,
+                971,
+                4.0,
+                "B1",
+                "WK",
+                "A2",
+                "DR",
+                110.42,
+                227.32,
+                84.14,
+                219.94
+              ],
+              [
+                934,
+                971,
+                4.0,
+                "B1",
+                "WK",
+                "A2",
+                "DR",
+                110.42,
+                227.32,
+                84.14,
+                219.94
+              ],
+              [
+                935,
+                971,
+                9.0,
+                "B1",
+                "LS",
+                "A2",
+                "DR",
+                163.5,
+                242.71,
+                84.14,
+                219.94
+              ],
+              [
+                935,
+                971,
+                9.0,
+                "B1",
+                "LS",
+                "A2",
+                "DR",
+                163.5,
+                242.71,
+                84.14,
+                219.94
+              ]
+            ],
+            "deaths": {
+              "A2": {
+                "CORE": 1,
+                "DRONE": 1
+              },
+              "B1": {
+                "WALKER": 1
+              }
+            },
+            "death_units": [
+              {
+                "id": "core:A2",
+                "uid": 932,
+                "owner": "A2",
+                "type": "CORE"
+              },
+              {
+                "id": "vu:000341:B1:WK",
+                "uid": 934,
+                "owner": "B1",
+                "type": "WALKER"
+              },
+              {
+                "id": "vu:000456:A2:DR",
+                "uid": 971,
+                "owner": "A2",
+                "type": "DRONE"
+              }
+            ]
+          }
+        },
+        {
+          "type": "BATTLE_RESOLVED",
+          "battle_type": "approach_battle",
+          "location_kind": "approach",
+          "location_id": "A2",
+          "battle_id": "node:A2",
+          "approach_id": "CP2->A2",
+          "threat_zone_ids": [
+            "core:A2"
+          ],
+          "winner": "B1",
+          "participants": [
+            "A2",
+            "B1"
+          ],
+          "core_destroyed": true,
+          "core_owner": "A2",
+          "core_hp": 0.0,
+          "lord_expended": false
+        },
+        {
+          "type": "BATTLE_REINFORCEMENT",
+          "battle_type": "approach_battle",
+          "location_kind": "approach",
+          "location_id": "A1",
+          "battle_id": "node:A1",
+          "approach_id": "CP1->A1",
+          "threat_zone_ids": [
+            "core:A1"
+          ],
+          "player": "A1",
+          "units": {
+            "SPITTER": 1
+          },
+          "intent": "DEFEND",
+          "reason": "stationed_reserve_absorbed"
+        },
+        {
+          "type": "BATTLE_TICK",
+          "battle_type": "approach_battle",
+          "location_kind": "approach",
+          "location_id": "A1",
+          "battle_id": "node:A1",
+          "approach_id": "CP1->A1",
+          "threat_zone_ids": [
+            "core:A1"
+          ],
+          "summary": {
+            "alive": {
+              "A1": {
+                "units": {
+                  "CORE": 1,
+                  "LIFE": 1
+                },
+                "hp": 90.0
+              },
+              "B1": {
+                "units": {
+                  "DRONE": 2,
+                  "LASER": 4,
+                  "WALKER": 1
+                },
+                "hp": 77.0
+              }
+            },
+            "damage_by_team": {
+              "A1": 24.0,
+              "B1": 104.0
+            },
+            "attacks": [
+              [
+                959,
+                963,
+                5.0,
+                "A1",
+                "SP",
+                "B1",
+                "DR",
+                51.12,
+                107.27,
+                105.74,
+                119.82
+              ],
+              [
+                961,
+                963,
+                7.0,
+                "A1",
+                "C",
+                "B1",
+                "DR",
+                70.0,
+                90.0,
+                105.74,
+                119.82
+              ],
+              [
+                961,
+                966,
+                7.0,
+                "A1",
+                "C",
+                "B1",
+                "DR",
+                70.0,
+                90.0,
+                107.69,
+                106.15
+              ],
+              [
+                962,
+                958,
+                4.0,
+                "B1",
+                "WK",
+                "A1",
+                "SW",
+                103.61,
+                127.49,
+                83.49,
+                117.5
+              ],
+              [
+                962,
+                958,
+                4.0,
+                "B1",
+                "WK",
+                "A1",
+                "SW",
+                103.61,
+                127.49,
+                83.49,
+                117.5
+              ],
+              [
+                963,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                105.74,
+                119.82,
+                83.49,
+                117.5
+              ],
+              [
+                963,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                105.74,
+                119.82,
+                83.49,
+                117.5
+              ],
+              [
+                964,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                107.05,
+                115.44,
+                83.49,
+                117.5
+              ],
+              [
+                964,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                107.05,
+                115.44,
+                83.49,
+                117.5
+              ],
+              [
+                965,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                107.8,
+                110.86,
+                83.49,
+                117.5
+              ],
+              [
+                965,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                107.8,
+                110.86,
+                83.49,
+                117.5
+              ],
+              [
+                966,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                107.69,
+                106.15,
+                83.49,
+                117.5
+              ],
+              [
+                966,
+                958,
+                3.0,
+                "B1",
+                "DR",
+                "A1",
+                "SW",
+                107.69,
+                106.15,
+                83.49,
+                117.5
+              ],
+              [
+                967,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                146.51,
+                115.17,
+                83.49,
+                117.5
+              ],
+              [
+                967,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                146.51,
+                115.17,
+                83.49,
+                117.5
+              ],
+              [
+                968,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                149.26,
+                108.74,
+                83.49,
+                117.5
+              ],
+              [
+                968,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                149.26,
+                108.74,
+                83.49,
+                117.5
+              ],
+              [
+                969,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                152.02,
+                102.3,
+                83.49,
+                117.5
+              ],
+              [
+                969,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                152.02,
+                102.3,
+                83.49,
+                117.5
+              ],
+              [
+                970,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                154.78,
+                95.87,
+                83.49,
+                117.5
+              ],
+              [
+                970,
+                958,
+                9.0,
+                "B1",
+                "LS",
+                "A1",
+                "SW",
+                154.78,
+                95.87,
+                83.49,
+                117.5
+              ],
+              [
+                972,
+                965,
+                5.0,
+                "A1",
+                "SP",
+                "B1",
+                "DR",
+                54.36,
+                96.86,
+                107.8,
+                110.86
+              ]
+            ],
+            "deaths": {
+              "A1": {
+                "BRUTE": 3,
+                "SWARMLING": 1,
+                "SPITTER": 2
+              },
+              "B1": {
+                "DRONE": 2
+              }
+            },
+            "death_units": [
+              {
+                "id": "vu:000437:A1:BR",
+                "uid": 955,
+                "owner": "A1",
+                "type": "BRUTE"
+              },
+              {
+                "id": "vu:000444:A1:BR",
+                "uid": 956,
+                "owner": "A1",
+                "type": "BRUTE"
+              },
+              {
+                "id": "vu:000448:A1:BR",
+                "uid": 957,
+                "owner": "A1",
+                "type": "BRUTE"
+              },
+              {
+                "id": "vu:000443:A1:SW",
+                "uid": 958,
+                "owner": "A1",
+                "type": "SWARMLING"
+              },
+              {
+                "id": "vu:000451:A1:SP",
+                "uid": 959,
+                "owner": "A1",
+                "type": "SPITTER"
+              },
+              {
+                "id": "vu:000333:B2:DR",
+                "uid": 963,
+                "owner": "B1",
+                "type": "DRONE"
+              },
+              {
+                "id": "vu:000285:B1:DR",
+                "uid": 966,
+                "owner": "B1",
+                "type": "DRONE"
+              },
+              {
+                "id": "vu:000455:A1:SP",
+                "uid": 972,
+                "owner": "A1",
+                "type": "SPITTER"
+              }
+            ]
+          }
+        },
+        {
+          "type": "REINFORCE",
+          "node": "B3",
+          "player": "B3"
+        },
+        {
+          "type": "LIFE_SPAWN",
+          "player": "B3",
+          "node": "B3",
+          "unit_type": "SWARMLING",
+          "building_type": "LIFE"
+        },
+        {
+          "type": "MOVE",
+          "player": "B1",
+          "src": "CP2",
+          "dst": "A1",
+          "resolved_dst": "A1",
+          "path": [
+            "CP2",
+            "A1"
+          ],
+          "units": {
+            "DRONE": 4,
+            "WALKER": 1
+          },
+          "intent": "CAPTURE",
+          "speed": 1.0,
+          "base_speed": 1.0,
+          "arrives": 117
+        }
+      ]
+    },
+    {
+      "tick": 132,
+      "winner_type": null,
+      "nodes": "<省略：マップ上の各拠点の状態（約5.5KB）>",
+      "moving_groups": "<省略：移動中のユニット部隊（約7.8KB）>",
+      "active_battles": "<省略：進行中の戦闘（約0.0KB）>",
+      "visual_units": "<省略：描画用ユニット座標（約46.7KB）>",
+      "players": {
+        "A1": {
+          "resources": 2.21,
+          "alive": false,
+          "core_hp": 0.0,
+          "core_type": "standard",
+          "faction": "infected"
+        },
+        "A2": {
+          "resources": 0.21,
+          "alive": false,
+          "core_hp": 0.0,
+          "core_type": "standard",
+          "faction": "robots"
+        },
+        "A3": {
+          "resources": 0.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "infected"
+        },
+        "B1": {
+          "resources": 24.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "robots"
+        },
+        "B2": {
+          "resources": 0.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "robots"
+        },
+        "B3": {
+          "resources": 147.21,
+          "alive": true,
+          "core_hp": 80.0,
+          "core_type": "standard",
+          "faction": "infected"
+        }
+      },
+      "baron": {
+        "hp": 0,
+        "max_hp": 300,
+        "controlled_by": "B1",
+        "allied_lord_owner": "B1",
+        "allied_lord_hp": 300.0,
+        "allied_lord_target": "A3",
+        "allied_lord_path": [
+          "Baron",
+          "CP1",
+          "A3"
+        ],
+        "allied_lord_ready_tick": 134,
+        "allied_lord_arrival_tick": 148,
+        "allied_lord_support_units": {},
+        "allied_lord_ready_in": 2,
+        "allied_lord_eta": 16,
+        "allied_lord_alive": true,
+        "allied_lord_expended": false
+      },
+      "core_damage_by_team": {
+        "TEAM_A": 0.0,
+        "TEAM_B": 160.0
+      },
+      "death_time_final_core_deaths": {
+        "TEAM_A": 0,
+        "TEAM_B": 0
+      },
+      "events": [
+        {
+          "type": "BATTLE_TICK",
+          "battle_type": "approach_battle",
+          "location_kind": "approach",
+          "location_id": "Baron",
+          "battle_id": "node:Baron",
+          "approach_id": "CP6->Baron",
+          "threat_zone_ids": [
+            "Lord"
+          ],
+          "summary": {
+            "alive": {
+              "B1": {
+                "units": {
+                  "DRONE": 3,
+                  "LASER": 2,
+                  "SPITTER": 2
+                },
+                "hp": 39.0
+              }
+            },
+            "damage_by_team": {
+              "B1": 14.0,
+              "BARON": 54.0
+            },
+            "attacks": [
+              [
+                1187,
+                1188,
+                13.0,
+                "BARON",
+                "L",
+                "B1",
+                "BR",
+                340.0,
+                210.0,
+                351.19,
+                231.23
+              ],
+              [
+                1187,
+                1188,
+                13.0,
+                "BARON",
+                "L",
+                "B1",
+                "BR",
+                340.0,
+                210.0,
+                351.19,
+                231.23
+              ],
+              [
+                1187,
+                1191,
+                13.0,
+                "BARON",
+                "L",
+                "B1",
+                "BR",
+                340.0,
+                210.0,
+                355.32,
+                228.48
+              ],
+              [
+                1187,
+                1191,
+                3.0,
+                "BARON",
+                "L",
+                "B1",
+                "BR",
+                340.0,
+                210.0,
+                355.32,
+                228.48
+              ],
+              [
+                1187,
+                1191,
+                3.0,
+                "BARON",
+                "L",
+                "B1",
+                "BR",
+                340.0,
+                210.0,
+                355.32,
+                228.48
+              ],
+              [
+                1187,
+                1191,
+                3.0,
+                "BARON",
+                "L",
+                "B1",
+                "BR",
+                340.0,
+                210.0,
+                355.32,
+                228.48
+              ],
+              [
+                1187,
+                1193,
+                3.0,
+                "BARON",
+                "L",
+                "B1",
+                "DR",
+                340.0,
+                210.0,
+                360.53,
+                226.59
+              ],
+              [
+                1187,
+                1192,
+                3.0,
+                "BARON",
+                "L",
+                "B1",
+                "DR",
+                340.0,
+                210.0,
+                359.19,
+                228.13
+              ],
+              [
+                1188,
+                1187,
+                4.0,
+                "B1",
+                "BR",
+                "BARON",
+                "L",
+                351.19,
+                231.23,
+                340.0,
+                210.0
+              ],
+              [
+                1191,
+                1187,
+                4.0,
+                "B1",
+                "BR",
+                "BARON",
+                "L",
+                355.32,
+                228.48,
+                340.0,
+                210.0
+              ],
+              [
+                1192,
+                1187,
+                3.0,
+                "B1",
+                "DR",
+                "BARON",
+                "L",
+                359.19,
+                228.13,
+                340.0,
+                210.0
+              ],
+              [
+                1192,
+                1187,
+                3.0,
+                "B1",
+                "DR",
+                "BARON",
+                "L",
+                359.19,
+                228.13,
+                340.0,
+                210.0
+              ]
+            ],
+            "deaths": {
+              "BARON": {
+                "BARON": 1
+              },
+              "B1": {
+                "BRUTE": 2,
+                "DRONE": 1
+              }
+            },
+            "death_units": [
+              {
+                "id": "vu:000049:BARON:L",
+                "uid": 1187,
+                "owner": "BARON",
+                "type": "BARON"
+              },
+              {
+                "id": "vu:000334:B3:BR",
+                "uid": 1188,
+                "owner": "B1",
+                "type": "BRUTE"
+              },
+              {
+                "id": "vu:000377:B3:BR",
+                "uid": 1191,
+                "owner": "B1",
+                "type": "BRUTE"
+              },
+              {
+                "id": "vu:000428:B2:DR",
+                "uid": 1193,
+                "owner": "B1",
+                "type": "DRONE"
+              }
+            ]
+          }
+        },
+        {
+          "type": "BATTLE_RESOLVED",
+          "battle_type": "approach_battle",
+          "location_kind": "approach",
+          "location_id": "Baron",
+          "battle_id": "node:Baron",
+          "approach_id": "CP6->Baron",
+          "threat_zone_ids": [
+            "Lord"
+          ],
+          "winner": "B1",
+          "participants": [
+            "B1"
+          ],
+          "baron_killed": true,
+          "lord_spawned": {
+            "type": "LORD_SPAWNED",
+            "player": "B1",
+            "team": "TEAM_B",
+            "src": "Baron",
+            "target": "A3",
+            "path": [
+              "Baron",
+              "CP1",
+              "A3"
+            ],
+            "units": {
+              "LORD": 1
+            },
+            "speed": 1.0,
+            "ready_tick": 134,
+            "arrives": 148,
+            "delay_ticks": 2
+          }
+        },
+        {
+          "type": "REINFORCE",
+          "node": "B1",
+          "player": "B1"
+        },
+        {
+          "type": "REINFORCE",
+          "node": "CP5",
+          "player": "B3"
+        },
+        {
+          "type": "LIFE_SPAWN",
+          "player": "B3",
+          "node": "B3",
+          "unit_type": "SWARMLING",
+          "building_type": "LIFE"
+        }
+      ]
+    }
+  ]
+}
