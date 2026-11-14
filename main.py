@@ -11,17 +11,17 @@ def main(fid: int, data: dict):
     # print("GEMINI_API_KEY" in os.environ)
     client = genai.Client()
 
-    # определить какие данные нужны для качественного анализа статистики
-    # print(data["meta"]["winner"]) # победитель
-    # print(data["meta"]["total_ticks"]) # длительность матча от 0 до 300 тиков
-    # print(data["meta"]["core_damage_by_team"]["TEAM_A"]) # сколько нанесла урона команда А
-    # print(data["meta"]["core_damage_by_team"]["TEAM_B"]) # сколько нанесла урона команда B
-    # print(data["meta"]["final_core_hp"]) # сколько осталось хп на конец матча у каждого игрока dict_keys(['A1', 'A2', 'A3', 'B1', 'B2', 'B3'])
-    # print(data["meta"]["player_factions"]) # на ком играют? может быть none
-    # print(data["meta"]["player_names"]) # кто играет? может быть none
-    # print(data["meta"]["allied_lord"]) # состояние лорда в матче ('owner', 'hp', 'target', 'path', 'ready_tick', 'arrival_tick', 'support_units', 'alive', 'expended')
-    # print(data["meta"]["winner_type"]) # тип победы 
-    # определить ключевые тики и события которые на них происходят, например убийство ядра 
+    # 質の高い統計分析に必要なデータを洗い出す
+    # print(data["meta"]["winner"]) # 勝者
+    # print(data["meta"]["total_ticks"]) # 試合時間（0〜300ティック）
+    # print(data["meta"]["core_damage_by_team"]["TEAM_A"]) # チームAが与えたダメージ量
+    # print(data["meta"]["core_damage_by_team"]["TEAM_B"]) # チームBが与えたダメージ量
+    # print(data["meta"]["final_core_hp"]) # 試合終了時点での各プレイヤーの残りHP dict_keys(['A1', 'A2', 'A3', 'B1', 'B2', 'B3'])
+    # print(data["meta"]["player_factions"]) # 各プレイヤーの使用勢力（None の場合あり）
+    # print(data["meta"]["player_names"]) # 誰がプレイしているか（None の場合あり）
+    # print(data["meta"]["allied_lord"]) # 試合中のロードの状態 ('owner', 'hp', 'target', 'path', 'ready_tick', 'arrival_tick', 'support_units', 'alive', 'expended')
+    # print(data["meta"]["winner_type"]) # 勝利の種類
+    # 重要なティックと、そこで発生するイベント（例：コアの撃破）を特定する
     # location_id winner participants core_owner
     lid = {"A1", "A2", "A3", "B1", "B2", "B3"}
     # def foundbattlestart(ticknumber, resolvedevent):
@@ -32,7 +32,7 @@ def main(fid: int, data: dict):
     #         for event in data["ticks"][ticknumber]["events"]:
     #             try:
     #                 if event["type"] == "BATTLE_STARTED" and event["location_id"] == resolvedevent:
-    #                     print(ticknumber) # предлагаю хранить все в словаре: начало битвы - конец битвы
+    #                     print(ticknumber) # すべてを辞書で管理する案：戦闘開始 → 戦闘終了
     #                     found = True
     #             except KeyError:
     #                 pass
@@ -41,24 +41,24 @@ def main(fid: int, data: dict):
         for event in tick["events"]:
             try:
                 if event["type"] == "BATTLE_RESOLVED" and event["location_id"] in lid and event["core_destroyed"] is True:
-                    # print(tick["tick"]) # номер тика
+                    # print(tick["tick"]) # ティック番号
                     coreDestroyedTicks.append(tick)
                     # foundbattlestart(tick["tick"], event["location_id"])
             except KeyError:
                 pass
     # print(coreDestroyedTicks[0].keys())
 
-    # перечисляем краши ядер
+    # コアの破壊（クラッシュ）を列挙する
     geminiinputcrash = ""
     for oneTick in coreDestroyedTicks:
         for coreDT in oneTick["events"]:
             try:
-                geminiinputcrash += f"""<crash> на тике {oneTick["tick"]} ядро игрока {coreDT["core_owner"]} было уничтожено, нападавшим игроком {coreDT["winner"]} </crash>, \n"""
+                geminiinputcrash += f"""<crash> {oneTick["tick"]}ティック目に、プレイヤー{coreDT["core_owner"]}のコアが、攻撃側のプレイヤー{coreDT["winner"]}によって破壊された </crash>, \n"""
             except KeyError:
                 pass
     # print(geminiinput)
 
-    # определяем состояние лорда
+    # ロードの状態を判定する
     geminiinputlord = ""
     pid = {"A1", "A2", "A3", "B1", "B2", "B3"} #player_id
     capturelordtick = 0
@@ -73,43 +73,52 @@ def main(fid: int, data: dict):
                     teamowner = "TEAM_A"
                 else:
                     teamowner = "TEAM_B"
+                break
         except KeyError:
             pass
 
-    # формируем запрос для гемини
+    # Gemini へのリクエストを組み立てる
     if owner == "":
-        geminiinputlord = "<lord>лорд не был призван</lord>"
+        geminiinputlord = "<lord>ロードは召喚されなかった</lord>"
     else:
-        geminiinputlord = f"<lord>лорд был повержен на {capturelordtick} тике, игроком {owner}, и был призван за команду {teamowner}</lord>"
+        geminiinputlord = f"<lord>ロードは{capturelordtick}ティック目にプレイヤー{owner}によって撃破され、{teamowner}の味方として召喚された</lord>"
     # print(geminiinputlord)
+
+    try:
+        player_names = data["meta"]["player_names"]
+    except KeyError:
+        player_names = "名前がありません"
 
     try:
         start = time.perf_counter()
         interaction = client.interactions.create(
             model="gemini-3.6-flash",
-            system_instruction="""ты - аналитик матча по виртуальной киберспортивной rts игре, 
-            в которой сражаются игроки 3 на 3. твоя задача - проанализировать матч и рассказать, что произошло в игре.
-            игра двигается по тикам. 
-            <data> - это все доступные данные по матчу. <winner> - победитель матча, <time> - длительность матча, <names> - имена игроков,
-            <fractions> - фракции игроков, <lord> - информация о лорде (сильный нейтральный юнит в центре карты, который при
-            уничтожение одной из команд встает на ее сторону и пушит ядро), <crash> - информация о тике, в котором было
-            сломано ядро. у игроков есть ключи A1 A2 A3 B1 B2 B3, используй вместо этих ключей имена, если таковые данные
-            тебе были предоставлены (если нет, то считай их безымянными новичками), игроки A - одна команда, игроки B - другая команда""",
+            system_instruction="""あなたは、プレイヤーが3対3で戦うバーチャルeスポーツRTSゲームの試合アナリストです。
+            あなたの役割は、試合を分析し、ゲームで何が起きたのかを解説することです。
+            ゲームはティック単位で進行します。
+            <data> は、この試合について入手できるすべてのデータです。
+            <winner> は試合の勝者、<time> は試合時間、<names> はプレイヤー名、<fractions> はプレイヤーの勢力、
+            <lord> はロードに関する情報（ロードとは、マップ中央にいる強力な中立ユニットです。いずれかのチームに倒されると、そのチームの味方となって敵のコアへプッシュします）、
+            <crash> はコアが破壊されたティックに関する情報です。
+            プレイヤーには A1、A2、A3、B1、B2、B3 というキーが割り当てられています。
+            プレイヤー名のデータが提供されている場合は、キーの代わりにその名前を使ってください（提供されていない場合は、無名の新人プレイヤーだとみなしてください）。
+            A のプレイヤーが一方のチーム、B のプレイヤーがもう一方のチームです。
+            回答はすべて自然な日本語で行ってください。""",
             input=f"""<data>
             <winner>{data["meta"]["winner"]}</winner>
             <time>{data["meta"]["total_ticks"]}</time>
-            <names>{data["meta"]["player_names"]}</names>
+            <names>{player_names}</names>
             <fractions>{data["meta"]["player_factions"]}</fractions>
             {geminiinputlord}
             {geminiinputcrash}
             </data>"""
         )
         elapsed = time.perf_counter() - start
-        print(f"{elapsed:.3f} с")      
+        print(f"{elapsed:.3f} 秒")
         print(interaction.output_text)
         print(interaction.usage)
         queue[fid]["result"]["text"] = interaction.output_text
-        queue[fid]["result"]["status"] = "готово"
+        queue[fid]["result"]["status"] = "完了"
     except Exception:  # noqa: BLE001
         queue[fid]["result"]["text"] = "error"
         queue[fid]["result"]["status"] = "error"
